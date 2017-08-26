@@ -4,9 +4,9 @@
 #include <ESP8266mDNS.h>
 #include <Servo.h>
 
-const char* ssid = "Shithammer";  // change this to the name of your wifi
-const char* password = "Letmein1"; // change this to the password of your wifi
-const char* deviceName = "ioSwings";
+const char* ssid = "YOUR WIFI";  // change this to the name of your wifi
+const char* password = "YOUR PASSWORD"; // change this to the password of your wifi
+const char* deviceName = "HelloServo"; // pick a name that you can use to find this on the network
 
 ESP8266WebServer server(80);
 
