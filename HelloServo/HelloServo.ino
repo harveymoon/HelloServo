@@ -4,9 +4,9 @@
 #include <ESP8266mDNS.h>
 #include <Servo.h>
 
-const char* ssid = "YOUR WIFI";  // change this to the name of your wifi
+const char* ssid = "YOUR WIFI";  // change this to the name of your wifi<br>const char* password = "YOUR PASSWORD"; // change this to the password of your wifi
 const char* password = "YOUR PASSWORD"; // change this to the password of your wifi
-const char* deviceName = "HelloServo"; // pick a name that you can use to find this on the network
+const char* deviceName = "helloservo"; // pick a name that you can use to find this on the network
 
 ESP8266WebServer server(80);
 
@@ -50,7 +50,7 @@ void setup(void) {
   Serial.print("IP address: ");
   Serial.println(WiFi.localIP());
 
-  if (MDNS.begin("esp8266")) {
+  if (MDNS.begin(deviceName)) {
     Serial.println("MDNS responder started");
   }
 
@@ -74,11 +74,12 @@ void setup(void) {
 
 void loop(void) {
   server.handleClient(); // first, each loop, make sure clients can connect
-  
+
+  // below is a simple smoothing code that slows the motions a bit
   if (nPos < gPos) { // if the go current position is less then the goto posotion
     nPos += 1; // add one degree onto the current position
     myservo.write(nPos); // set our servo to move to the new position
-    delay(15); // pause for a second to catch up
+    delay(15); // pause for a second to catch up 
   }
   else   if (nPos > gPos) { // if the current position is more then the goto position
     nPos -= 1; // subtract one degree from the current position
